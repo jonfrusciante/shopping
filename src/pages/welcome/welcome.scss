@@ -1,0 +1,53 @@
+.welcome-layout{
+	.main-container{
+		height: 100%;
+		.top-section{
+			position: absolute;
+			top: 0;
+			width: 100%;
+			.logo{
+				background-color: map-get($colors, light);
+				border: 2px solid map-get($colors, light);
+				border-radius: 50px;
+				display: inline-block;
+				height: 150px;
+				margin: 20px auto;
+				padding: 20px;
+				width: 150px;
+			}
+		}
+		.bottom-section{
+			bottom: 0;
+			padding: 0 0 20px;
+			position: absolute;
+			width: 100%;
+			.sign-buttons{
+				button{
+					width: 48%;
+				}
+			}
+		}
+	}
+}
+
+.tour-layout{
+	ion-slide{
+		.image{
+			border: 2px solid map-get($colors, light);
+			border-radius: 50px;
+			display: inline-block;
+			height: 150px;
+			padding: 20px;
+			width: 150px;
+			ion-icon{
+				font-size: 5em;
+			}
+		}
+	}
+	.footer-btns{
+		.toolbar-background{
+			background-color: #000;
+			opacity: 0.2;
+		}
+	}
+}

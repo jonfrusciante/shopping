@@ -1,0 +1,61 @@
+<ion-content padding middle center *ngIf="tourCompleted == true" class="welcome-layout bg-primary">
+	<div class="main-container relative">
+		<div class="top-section">
+			<ion-grid text-center>
+				<div class="logo">
+					<img src="assets/images/logo.png" />
+				</div>
+			</ion-grid>
+			<p text-center class="text-light">Some Good text here..!
+		</div>
+		<div class="bottom-section">
+			<ion-buttons text-center bottom class="sign-buttons">
+				<button ion-button color="light" (click)="goTo('login', {'section':'login'})">Log In</button>
+				<button ion-button color="light" (click)="goTo('login', {'section':'register'})">register</button>
+			</ion-buttons>
+			<a href="javascript:;" (click)="loginAnonymous()">Skip</a>
+		</div>
+	</div>
+</ion-content>
+
+<ion-content *ngIf="tourCompleted == false" class="tour-layout">
+	<ion-slides pager="true">
+		<ion-slide padding class="bg-primary text-light">
+			<div class="slide-content">
+				<div class="image"><ion-icon name="home"></ion-icon></div>
+				<h2 class="title">Slide 1</h2>
+				<p class="desc">
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+				</p>
+			</div>
+		</ion-slide>
+
+		<ion-slide padding class="bg-assertive text-light">
+			<div class="slide-content">
+				<div class="image"><ion-icon name="home"></ion-icon></div>
+				<h2 class="title">Slide 2</h2>
+				<p class="desc">
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+				</p>
+			</div>
+		</ion-slide>
+
+		<ion-slide padding class="bg-royal text-light">
+			<div class="slide-content">
+				<div class="image"><ion-icon name="home"></ion-icon></div>
+				<h2 class="title">Slide 3</h2>
+				<p class="desc">
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+				</p>
+			</div>
+		</ion-slide>
+	</ion-slides>
+	<ion-footer class="footer-btns">
+		<ion-toolbar>
+			<ion-buttons text-center>
+				<button ion-button (click)="completeTour()" color="light">Close</button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-footer>
+</ion-content>
+

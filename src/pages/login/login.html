@@ -1,0 +1,78 @@
+<ion-header class="flat">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Join Now</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="login-layout">
+	<div class="main-container relative">
+		<div class="top-container bg-primary">
+			<ion-grid text-center>
+				<div class="logo">
+					<img src="assets/images/logo.png" />
+				</div>
+			</ion-grid>
+		</div>
+		<div class="form-container" padding>
+			<div class="form-box loginform" [ngClass]="{'hide':(section != 'login')}">
+				<form [formGroup]="loginForm" (ngSubmit)="login()">
+					<ion-item no-padding>
+						<ion-label>Email</ion-label>
+						<ion-input type="text" formControlName="email"></ion-input>
+					</ion-item>
+					<ion-item no-padding>
+						<ion-label>Password</ion-label>
+						<ion-input type="password" formControlName="password"></ion-input>
+					</ion-item>
+					<ion-buttons>
+						<div class="signin-button" padding-top><button ion-button block type="submit" [disabled]="!loginForm.valid">Log In</button></div>
+						<div class="password-button" padding-top><button ion-button block outline type="button" (click)="switchTo('password');">Forgot Password</button></div>
+						<div class="signup-button" text-center padding-top>Join us <a href="javascript:void(0)" (click)="switchTo('register');">Register</a></div>
+					</ion-buttons>					
+				</form>
+			</div>
+			
+			<div class="form-box registerform" [ngClass]="{'hide':(section != 'register')}">
+				<form [formGroup]="registerForm" (ngSubmit)="register()">
+					<ion-item no-padding>
+						<ion-label>Name</ion-label>
+						<ion-input type="text" formControlName="name"></ion-input>
+					</ion-item>
+					<ion-item no-padding>
+						<ion-label>Email</ion-label>
+						<ion-input type="text" formControlName="email"></ion-input>
+					</ion-item>
+					<ion-item no-padding>
+						<ion-label>Password</ion-label>
+						<ion-input type="password" formControlName="password"></ion-input>
+					</ion-item>
+					<ion-item no-padding>
+						<ion-label>DOB</ion-label>
+						<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY" formControlName="dob"></ion-datetime>
+					</ion-item>
+					<ion-buttons>
+						<div class="password-button" padding-top><button ion-button block type="submit" [disabled]="!registerForm.valid">Register</button></div>
+						<div class="signup-button" text-center padding-top>Already have a account? <a href="javascript:void(0)" (click)="switchTo('login');">Log In</a></div>
+					</ion-buttons>
+				</form>
+			</div>
+			
+			<div class="form-box passwordform" [ngClass]="{'hide':(section != 'password')}">
+				<form [formGroup]="passwordForm" (ngSubmit)="forgotPassword()">
+					<ion-item no-padding>
+						<ion-label>Email</ion-label>
+						<ion-input type="text" formControlName="email"></ion-input>
+					</ion-item>
+					<ion-buttons>
+						<div class="signin-button" padding-top><button ion-button block type="submit" [disabled]="!passwordForm.valid">Reset</button></div>
+						<div class="signup-button" text-center padding-top>Back to <a href="javascript:void(0)" (click)="switchTo('login');">Log In</a></div>
+					</ion-buttons>					
+				</form>
+			</div>
+		</div>
+	</div>
+</ion-content>

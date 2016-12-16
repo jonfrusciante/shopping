@@ -1,0 +1,17 @@
+.login-layout{	
+	.top-container{
+		.logo{
+			background-color: map-get($colors, light);
+			border: 2px solid map-get($colors, light);
+			border-radius: 50px;
+			display: inline-block;
+			height: 150px;
+			margin: 20px auto;
+			padding: 20px;
+			width: 150px;
+		}
+	}
+	.form-container{
+		padding: 20px 15px;
+	}
+}

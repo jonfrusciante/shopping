@@ -1,0 +1,55 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+		<ion-title>eCommerce</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only><ion-icon name="cart"></ion-icon><ion-badge item-right>{{(cart | async)?.length}}</ion-badge></button>
+			<button ion-button icon-only><ion-icon name="pricetag"></ion-icon></button>			
+		</ion-buttons>
+	</ion-navbar>
+	<ion-toolbar color="primary">
+		<ion-searchbar (input)="getItems($event)"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-slides pager style="height:160px">
+		<ion-slide [style.background-color]="slide.image" *ngFor="let slide of homeSlider | async">
+			<h2>{{slide.title}}</h2>
+			<p>{{slide.desc}}</p>
+		</ion-slide>
+	</ion-slides>
+	
+	<ion-grid no-padding>
+		<ion-title>Best Deals</ion-title>
+		<ion-row>
+			<ion-col width-50 no-padding *ngFor="let item of bestDeals | async">
+				<ion-card [style.background-color]="item.image">
+					<img src="img/nin-live.png"/>
+					<ion-card-content>
+						<ion-card-title>{{item.name}}</ion-card-title>
+						<p>Rs. {{item.price}}</p>
+						<button ion-button (click)="addToCart({'urlKey': item.urlKey, 'name': item.name, 'qty': 1, 'price': item.price});">Add to cart</button>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	<ion-grid no-padding>
+		<ion-title>Top Brands</ion-title>
+		<ion-row>
+			<ion-col width-50 no-padding *ngFor="let item of topBrands | async">
+				<ion-card [style.background-color]="item.image">
+					<img src="img/nin-live.png"/>
+					<ion-card-content>
+						<ion-card-title>{{item.name}}</ion-card-title>
+						<p>{{item.desc}}</p>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+</ion-content>

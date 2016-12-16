@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div class="logo" text-center>
+		<img src="assets/images/user.png" />
+	</div>
+	<div class="form-container">
+		<div class="form-box profileform" [ngClass]="{'hide':(section != 'profile')}">
+			<form [formGroup]="profileForm" (ngSubmit)="save()">
+				<ion-item no-padding>
+					<ion-label>Name</ion-label>
+					<ion-input type="text" formControlName="displayName" [ngModel]="(profile | async)?.displayName"></ion-input>
+				</ion-item>
+				<ion-item no-padding>
+					<ion-label>Email</ion-label>
+					<ion-input type="text" formControlName="email" readonly="true" [ngModel]="(profile | async)?.email"></ion-input>
+				</ion-item>
+				<ion-item no-padding>
+					<ion-label>DOB</ion-label>
+					<ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY" formControlName="dob" [ngModel]="(profile | async)?.dob"></ion-datetime>
+				</ion-item>
+				<ion-buttons padding-vertical>
+					<button ion-button block type="submit" [disabled]="!profileForm.valid">Save</button>
+				</ion-buttons>
+			</form>
+		</div>
+		<div class="form-box passwordform" [ngClass]="{'hide':(section != 'password')}">
+			<form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+				<ion-item no-padding>
+					<ion-label>Current Password</ion-label>
+					<ion-input type="password" formControlName="password"></ion-input>
+				</ion-item>
+				<ion-item no-padding>
+					<ion-label>New Password</ion-label>
+					<ion-input type="password" formControlName="newPassword"></ion-input>
+				</ion-item>
+				<ion-buttons padding-vertical>
+					<button ion-button block type="submit" [disabled]="!passwordForm.valid">Save</button>
+				</ion-buttons>
+			</form>
+		</div>
+	</div>
+</ion-content>
