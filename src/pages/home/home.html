@@ -2,13 +2,10 @@
 	<ion-navbar color="primary">
 		<button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
 		<ion-title>eCommerce</ion-title>
-		<ion-buttons end>
-			<button ion-button icon-only><ion-icon name="cart"></ion-icon><ion-badge item-right>{{(cart | async)?.length}}</ion-badge></button>
-			<button ion-button icon-only><ion-icon name="pricetag"></ion-icon></button>			
-		</ion-buttons>
+		<ion-buttons end top-links></ion-buttons>
 	</ion-navbar>
 	<ion-toolbar color="primary">
-		<ion-searchbar (input)="getItems($event)"></ion-searchbar>
+		<ion-searchbar (input)="search($event)"></ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
@@ -30,7 +27,7 @@
 					<ion-card-content>
 						<ion-card-title>{{item.name}}</ion-card-title>
 						<p>Rs. {{item.price}}</p>
-						<button ion-button (click)="addToCart({'urlKey': item.urlKey, 'name': item.name, 'qty': 1, 'price': item.price});">Add to cart</button>
+						<button ion-button (click)="addToCart({'sku': item.sku, 'name': item.name, 'qty': 1, 'price': item.price});">Add to cart</button>
 					</ion-card-content>
 				</ion-card>
 			</ion-col>

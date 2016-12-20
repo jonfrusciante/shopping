@@ -16,11 +16,14 @@ export class Backend {
 	topBrandsRef = 'topBrands/';
 	
 	profile: FirebaseObjectObservable<any>;
-	cart: FirebaseListObservable<any>;
+	cart: FirebaseObjectObservable<any>;
 	homeSlider: FirebaseListObservable<any>;
 	topBrands: FirebaseListObservable<any>;
+	bestDeals: FirebaseListObservable<any>;
 	
-	constructor(public af: AngularFire) {
+	constructor(
+		public af: AngularFire
+	) {
 		this.fb = firebase;
 		this.auth = this.fb.auth();
 		this.auth.onAuthStateChanged((user)=>{
@@ -90,12 +93,34 @@ export class Backend {
 	
 	getCart() {
 		if(this.currentUser && !this.cart){
-			this.cart = this.db.list(this.cartRef+this.currentUser.uid);			
+			this.cart = this.db.object(this.cartRef+this.currentUser.uid);			
 		}
 		return this.cart;
 	}
 	
 	getCartItem(itemKey) {
-		return this.db.object(this.cartRef+this.currentUser.uid+'/'+itemKey).take(1);
+		return this.db.object(this.cartRef+this.currentUser.uid+'/items/'+itemKey).take(1);
+	}
+	
+	addToCart(formData) {
+		if(formData){
+			let cartItem = this.getCartItem(formData.sku);
+			cartItem.subscribe(data=>{
+				if(data.$exists()) {
+					let newQty = data.qty + formData.qty;
+					let newTotal = newQty * formData.price;
+					cartItem.update({'qty': newQty, 'rowTotal': newTotal});					
+				} else {
+					formData.rowTotal = formData.qty * formData.price;
+					cartItem.update(formData);
+				}
+			});
+			return cartItem;
+		}
+	}
+	
+	deleteCartItem(code) {
+		let cartItem = this.getCartItem(code);
+		cartItem.remove();
 	}
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuController, LoadingController } from 'ionic-angular';
+import { MenuController, LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
+import { TopLinks } from '../../components/top-links/top-links';
 
 @Component({
 	selector: 'home-page',
@@ -14,6 +15,7 @@ export class HomePage {
 	
 	constructor(
 		public menu: MenuController, 
+		public nav: Nav,
 		public bk: Backend,
 		public loadingCtrl: LoadingController
 	) {
@@ -26,16 +28,7 @@ export class HomePage {
 	addToCart(formData) {
 		let loading = this.loadingCtrl.create({content: 'Please wait...'});
 		loading.present();
-		let cartItem = this.bk.getCartItem(formData.urlKey);		
-		cartItem.subscribe(data=>{
-			if(data.$exists()) {
-				let newQty = data.qty + formData.qty;
-				let newTotal = newQty * formData.price;
-				cartItem.update({'qty': newQty, 'rowTotal': newTotal});
-			} else {
-				formData.rowTotal = formData.qty * formData.price;
-				cartItem.update(formData);
-			}
+		this.bk.addToCart(formData).subscribe(cartItem => {
 			loading.dismiss();
 		});
 	}

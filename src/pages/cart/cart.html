@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+		<ion-title>My Cart</ion-title>
+		<ion-buttons end top-links></ion-buttons>
+	</ion-navbar>
+	<ion-toolbar color="primary">
+		<ion-searchbar (input)="search($event)"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+	<div class="cart">
+		<ion-card *ngFor="let item of (cart | async)?.items | mapToIterable">
+			<ion-card-header>{{item.name}}</ion-card-header>
+			<ion-card-content>
+				Price: {{item.price}}<br/>
+				Qty: {{item.qty}}<br/>
+				Total: {{item.rowTotal}}
+				<button ion-button icon-only (click)="deleteItem(item.sku)"><ion-icon name="trash"></ion-icon></button>
+			</ion-card-content>
+		</ion-card>
+		<ion-card *ngIf="!(cart|async)?.items">
+			<ion-card-header>Cart Empty</ion-card-header>
+			<ion-card-content>
+				No Items available in your cart
+			</ion-card-content>
+		</ion-card>		
+	</div>
+</ion-content>

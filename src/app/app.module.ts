@@ -8,6 +8,12 @@ import { MyApp } from './app.component';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { CartPage } from '../pages/cart/cart';
+
+import { TopLinks } from '../components/top-links/top-links';
+import { AddToCart } from '../components/add-to-cart/add-to-cart';
+
+import { MapToIterable } from '../pipes/maptoiterable';
 
 export const firebaseConfig = {
 	apiKey: "AIzaSyCMO6yJ6JB4QgEWySf36IWXexy4r6M7SHI",
@@ -27,7 +33,11 @@ const myFirebaseAuthConfig = {
 		MyApp,
 		WelcomePage,
 		HomePage,
-		LoginPage
+		LoginPage,
+		CartPage,
+		TopLinks,
+		MapToIterable,
+		AddToCart
 	],
 	imports: [
 		IonicModule.forRoot(MyApp),
@@ -38,7 +48,8 @@ const myFirebaseAuthConfig = {
 		MyApp,
 		WelcomePage,
 		HomePage,
-		LoginPage
+		LoginPage,
+		CartPage
 	],
 	providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, Backend]
 })
