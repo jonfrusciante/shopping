@@ -11,7 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { CartPage } from '../pages/cart/cart';
 
 import { TopLinks } from '../components/top-links/top-links';
-import { AddToCart } from '../components/add-to-cart/add-to-cart';
+import { Search } from '../components/search/search';
 
 import { MapToIterable } from '../pipes/maptoiterable';
 
@@ -37,7 +37,7 @@ const myFirebaseAuthConfig = {
 		CartPage,
 		TopLinks,
 		MapToIterable,
-		AddToCart
+		Search
 	],
 	imports: [
 		IonicModule.forRoot(MyApp),

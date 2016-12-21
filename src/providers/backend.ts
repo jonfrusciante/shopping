@@ -11,15 +11,21 @@ export class Backend {
 	db: any;
 	profileRef = 'users/';
 	cartRef = 'cart/';
-	homeSliderRef = 'homeSlider/';
-	bestDealsRef = 'bestDeals/';
-	topBrandsRef = 'topBrands/';
+	menuRef = 'cms/menu';	
+	productsRef = 'catalog/products/';
+	categoriesRef = 'catalog/categories/';
+	brandsRef = 'catalog/brands/';
+	homeSliderRef = 'cms/homeSlider/';	
 	
 	profile: FirebaseObjectObservable<any>;
 	cart: FirebaseObjectObservable<any>;
+	menu: FirebaseListObservable<any>;
+	products: FirebaseListObservable<any>;
+	categories: FirebaseListObservable<any>;
+	brands: FirebaseListObservable<any>;	
 	homeSlider: FirebaseListObservable<any>;
-	topBrands: FirebaseListObservable<any>;
 	bestDeals: FirebaseListObservable<any>;
+	topBrands: FirebaseListObservable<any>;
 	
 	constructor(
 		public af: AngularFire
@@ -70,6 +76,34 @@ export class Backend {
 		return this.profile;
 	}
 	
+	getCategories() {
+		if(!this.categories){
+			this.categories = this.db.list(this.categoriesRef).take(1);
+		} 
+		return this.categories;
+	}
+	
+	getProducts() {
+		if(!this.products){
+			this.products = this.db.list(this.productsRef).take(1);
+		} 
+		return this.products;
+	}
+	
+	getBrands() {
+		if(!this.brands){
+			this.brands = this.db.list(this.brandsRef).take(1);
+		} 
+		return this.brands;
+	}
+	
+	getMenu() {
+		if(!this.menu){
+			this.menu = this.db.list(this.menuRef).take(1);
+		} 
+		return this.menu;
+	}
+	
 	getHomeSlider() {
 		if(!this.homeSlider){
 			this.homeSlider = this.db.list(this.homeSliderRef).take(1);
@@ -79,14 +113,24 @@ export class Backend {
 	
 	getBestDeals() {
 		if(!this.bestDeals){
-			this.bestDeals = this.db.list(this.bestDealsRef).take(1);
-		} 
+			this.bestDeals = this.db.list(this.productsRef, {
+				query: {
+					orderByChild: 'bestDeals',
+					equalTo: true
+				}
+			}).take(1);
+		}
 		return this.bestDeals;
 	}
 	
 	getTopBrands() {
 		if(!this.topBrands){
-			this.topBrands = this.db.list(this.topBrandsRef).take(1);
+			this.topBrands = this.db.list(this.brandsRef, {
+				query: {
+					orderByChild: 'topBrands',
+					equalTo: true
+				}
+			}).take(1);
 		} 
 		return this.topBrands;
 	}
@@ -122,5 +166,14 @@ export class Backend {
 	deleteCartItem(code) {
 		let cartItem = this.getCartItem(code);
 		cartItem.remove();
+	}
+	
+	search(key) {
+		return this.db.list(this.productsRef, {
+			query: {
+				orderByChild: 'name',
+				startAt: key
+			}
+		}).take(1);
 	}
 }

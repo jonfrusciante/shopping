@@ -5,7 +5,7 @@
 		<ion-buttons end top-links></ion-buttons>
 	</ion-navbar>
 	<ion-toolbar color="primary">
-		<ion-searchbar (input)="search($event)"></ion-searchbar>
+		<div search class="search-form"></div>
 	</ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
 	<ion-slides pager style="height:160px">
 		<ion-slide [style.background-color]="slide.image" *ngFor="let slide of homeSlider | async">
 			<h2>{{slide.title}}</h2>
-			<p>{{slide.desc}}</p>
+			<p>{{slide.description}}</p>
 		</ion-slide>
 	</ion-slides>
 	

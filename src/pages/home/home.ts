@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { MenuController, LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
 import { TopLinks } from '../../components/top-links/top-links';
+import { Search } from '../../components/search/search';
 
 @Component({
 	selector: 'home-page',
 	templateUrl: 'home.html'
 })
 export class HomePage {
+	cms: any;
 	homeSlider: any;
 	bestDeals: any;
 	topBrands: any;

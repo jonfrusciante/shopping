@@ -18,6 +18,7 @@ export class MyApp {
 	menuType: any = 'men';
 	pages: Array<{title: string, component: any, params?: any}>;
 	profile: any;
+	menuData: any;
 
 	constructor(
 		public platform: Platform,
@@ -38,6 +39,7 @@ export class MyApp {
 			}
 			this.profile = this.bk.getProfile();
 		});
+		this.menuData = this.bk.getMenu();
 	}
 
 	initializeApp() {
