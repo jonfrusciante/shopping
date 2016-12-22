@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, LoadingController } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
-import { MapToIterable } from '../../pipes/maptoiterable';
 import { TopLinks } from '../../components/top-links/top-links';
 
 @Component({

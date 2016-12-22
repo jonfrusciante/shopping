@@ -1,0 +1,18 @@
+<ion-card *ngIf="filteredProducts && filteredProducts.length">
+	<ion-list>
+		<ion-list-header>Products</ion-list-header>
+		<ion-item *ngFor="let product of filteredProducts">
+			<ion-avatar item-left [style.background-color]="product.image">
+				<img src="img/avatar-finn.png">
+			</ion-avatar>
+			<h2>{{product.name}}</h2>
+			<h3>{{product.price}}</h3>
+			<p>{{product.short_desc}}</p>
+		</ion-item>
+	</ion-list>
+</ion-card>
+
+<ion-card *ngIf="!filteredProducts || !filteredProducts.length">
+	<ion-card-header>Ooops!!</ion-card-header>
+	<ion-card-content>No items found here.. Please try search..</ion-card-content>
+</ion-card>

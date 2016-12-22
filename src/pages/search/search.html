@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-toolbar color="primary">		
+		<ion-searchbar #searchbar (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" (ionFocus)="onFocus()" [showCancelButton]="true" [autocomplete]="on"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-card *ngIf="result">
+		<ion-list *ngIf="result.products && result.products.length">
+			<ion-list-header>Products</ion-list-header>
+			<ion-item *ngFor="let product of result.products">
+				<ion-avatar item-left [style.background-color]="product.image">
+					<img src="img/avatar-finn.png">
+				</ion-avatar>
+				<h2>{{product.name}}</h2>
+				<h3>{{product.price}}</h3>
+				<p>{{product.short_desc}}</p>
+			</ion-item>
+		</ion-list>
+		
+		<ion-list *ngIf="result.categories && result.categories.length">
+			<ion-list-header>Categories</ion-list-header>
+			<ion-item *ngFor="let category of result.categories">
+				<ion-avatar item-left [style.background-color]="category.image">
+					<img src="img/avatar-finn.png">
+				</ion-avatar>
+				<h2>{{category.name}}</h2>
+				<p>{{category.short_desc}}</p>
+			</ion-item>
+		</ion-list>
+		
+		<ion-list *ngIf="result.brands && result.brands.length">
+			<ion-list-header>Brands</ion-list-header>
+			<ion-item *ngFor="let brand of result.brands">
+				<ion-avatar item-left [style.background-color]="brand.image">
+					<img src="img/avatar-finn.png">
+				</ion-avatar>
+				<h2>{{brand.name}}</h2>
+				<p>{{brand.short_desc}}</p>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+</ion-content>

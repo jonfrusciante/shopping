@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController, LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
+import { BrandPage } from '../brand/brand';
 import { TopLinks } from '../../components/top-links/top-links';
 import { Search } from '../../components/search/search';
 
@@ -37,5 +38,9 @@ export class HomePage {
 	
 	ionViewWillEnter(){
 		this.menu.enable(true);
+	}
+	
+	gotoBrand(code) {
+		this.nav.push(BrandPage, {'filter': {'brand': code}});
 	}
 }

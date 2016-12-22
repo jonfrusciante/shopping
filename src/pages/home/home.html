@@ -38,7 +38,7 @@
 		<ion-title>Top Brands</ion-title>
 		<ion-row>
 			<ion-col width-50 no-padding *ngFor="let item of topBrands | async">
-				<ion-card [style.background-color]="item.image">
+				<ion-card [style.background-color]="item.image" (click)="gotoBrand(item.code)">
 					<img src="img/nin-live.png"/>
 					<ion-card-content>
 						<ion-card-title>{{item.name}}</ion-card-title>

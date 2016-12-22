@@ -6,7 +6,7 @@ import { Backend } from '../providers/backend';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { CategoryPage } from '../pages/category/category';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class MyApp {
 	menuType: any = 'men';
 	pages: Array<{title: string, component: any, params?: any}>;
 	profile: any;
-	menuData: any;
+	menuLinks: any;
 
 	constructor(
 		public platform: Platform,
@@ -27,8 +27,7 @@ export class MyApp {
 	) {
 		this.initializeApp();
 		this.pages = [
-			{ title: 'Home', component: HomePage },
-			{ title: 'My First List', component: ListPage }
+			{ title: 'Home', component: HomePage }
 		];
 		
 		this.bk.auth.onAuthStateChanged((user)=>{			
@@ -39,7 +38,7 @@ export class MyApp {
 			}
 			this.profile = this.bk.getProfile();
 		});
-		this.menuData = this.bk.getMenu();
+		this.menuLinks = this.bk.getMenu();
 	}
 
 	initializeApp() {
@@ -52,6 +51,15 @@ export class MyApp {
 	openPage(page) {
 		this.menu.close();
 		this.nav.setRoot(page.component);
+	}
+	
+	openCategoryLink(code) {		
+		this.nav.push(CategoryPage, {'filter': {'category': code}});
+		this.menu.close();
+	}
+	
+	switchMenuType(type) {
+		this.menuType = type;
 	}
 	
 	goTo(page, params) {

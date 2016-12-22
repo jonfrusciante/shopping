@@ -6,65 +6,23 @@
 				<span *ngIf="profile">Hi {{(profile|async)?.displayName}}!</span>
 				You looking for?
 			</ion-title>
-			<ion-segment [(ngModel)]="menuType">
-				<ion-segment-button value="men">Men</ion-segment-button>
-				<ion-segment-button value="women">Women</ion-segment-button>
-			</ion-segment>
+			<ion-buttons>
+				<button ion-button (click)="switchMenuType(type?.code)" *ngFor="let type of menuLinks|async" [color]="(menuType == type?.code) ? 'primary':''">{{type.name}}</button>
+			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
 
-	<ion-content>    
-		<div [ngSwitch]="menuType">
-			<ion-list *ngSwitchCase="'men'">
-				<ion-item-group>
-					<ion-item-divider color="light">Clothings</ion-item-divider>
-					<ion-item>Shits</ion-item>
-					<ion-item>Jeans</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Shoes</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Sports</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Accesories</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
-			</ion-list>
-
-			<ion-list *ngSwitchCase="'women'">
-				<ion-item-group>
-					<ion-item-divider color="light">Clothings</ion-item-divider>
-					<ion-item>Shits</ion-item>
-					<ion-item>Jeans</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Shoes</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Sports</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
-				<ion-item-group>
-					<ion-item-divider color="light">Accesories</ion-item-divider>
-					<ion-item>Boots</ion-item>
-					<ion-item>Sandals</ion-item>
-					<ion-item>Slippers</ion-item>
-				</ion-item-group>
+	<ion-content>
+		<div class="level0" *ngFor="let type of menuLinks|async">
+			<ion-list [ngClass]="type?.code" *ngIf="type?.code && (menuType==type?.code)">
+				<div class="level1" *ngFor="let link of type?.child">
+					<ion-item-group *ngIf="link?.code">
+						<ion-item-divider color="light">{{link?.name}}</ion-item-divider>
+						<div class="level2" *ngFor="let subLink of link?.child">
+							<button ion-item *ngIf="subLink?.code" (click)="openCategoryLink(subLink?.code)">{{subLink?.name}}</button>
+						</div>
+					</ion-item-group>
+				</div>
 			</ion-list>
 		</div>
 		

@@ -8,10 +8,14 @@ import { MyApp } from './app.component';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { CategoryPage } from '../pages/category/category';
+import { BrandPage } from '../pages/brand/brand';
+import { SearchPage } from '../pages/search/search';
 import { CartPage } from '../pages/cart/cart';
 
 import { TopLinks } from '../components/top-links/top-links';
 import { Search } from '../components/search/search';
+import { List } from '../components/list/list';
 
 import { MapToIterable } from '../pipes/maptoiterable';
 
@@ -34,10 +38,14 @@ const myFirebaseAuthConfig = {
 		WelcomePage,
 		HomePage,
 		LoginPage,
+		CategoryPage,
+		BrandPage,
+		SearchPage,
 		CartPage,
 		TopLinks,
 		MapToIterable,
-		Search
+		Search,
+		List
 	],
 	imports: [
 		IonicModule.forRoot(MyApp),
@@ -48,7 +56,10 @@ const myFirebaseAuthConfig = {
 		MyApp,
 		WelcomePage,
 		HomePage,
+		CategoryPage,
+		BrandPage,
 		LoginPage,
+		SearchPage,
 		CartPage
 	],
 	providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, Backend]

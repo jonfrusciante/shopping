@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Nav, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
 import { HomePage } from '../home/home';
@@ -18,7 +18,7 @@ export class LoginPage {
 	
 	constructor(
 		private nav: Nav, 
-		public navParams: NavParams, 
+		public navParams: NavParams,
 		private formBuilder: FormBuilder, 
 		public bk: Backend, 
 		public alertCtrl: AlertController, 

@@ -1,0 +1,15 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+		<ion-title>eCommerce</ion-title>
+		<ion-buttons end top-links></ion-buttons>
+	</ion-navbar>
+	<ion-toolbar color="primary">
+		<div search class="search-form"></div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-title>{{(brand|async)?.name}}</ion-title>
+	<list [filter]="filter" *ngIf="filter"></list>
+</ion-content>

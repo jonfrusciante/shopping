@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MenuController, LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
+import { SearchPage } from '../../pages/search/search';
 
 @Component({
 	selector: '[search]',
-	templateUrl: 'search.html'
+	template: '<ion-searchbar (click)="goToSearch()"></ion-searchbar>'
 })
 export class Search {
 	results: any;
@@ -18,9 +19,7 @@ export class Search {
 		this.results;
 	}
 	
-	search(event) {
-		let key = event.target.value;
-		this.results = this.bk.search(key);
-		this.results.subscribe(data=>{console.log(data)});
+	goToSearch() {
+		this.nav.push(SearchPage);
 	}
 }

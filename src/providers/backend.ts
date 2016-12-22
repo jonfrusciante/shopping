@@ -135,6 +135,18 @@ export class Backend {
 		return this.topBrands;
 	}
 	
+	getCategory(code) {
+		return this.db.object(this.categoriesRef+code);
+	}
+	
+	getBrand(code) {
+		return this.db.object(this.brandsRef+code);
+	}
+	
+	getProduct(code) {
+		return this.db.object(this.productsRef+code);
+	}
+	
 	getCart() {
 		if(this.currentUser && !this.cart){
 			this.cart = this.db.object(this.cartRef+this.currentUser.uid);			
@@ -166,14 +178,5 @@ export class Backend {
 	deleteCartItem(code) {
 		let cartItem = this.getCartItem(code);
 		cartItem.remove();
-	}
-	
-	search(key) {
-		return this.db.list(this.productsRef, {
-			query: {
-				orderByChild: 'name',
-				startAt: key
-			}
-		}).take(1);
 	}
 }
