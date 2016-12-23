@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
+import { ProductPage } from '../../pages/product/product';
 
 @Component({
 	selector: 'list',
@@ -48,6 +49,10 @@ export class List {
 				this.filteredProducts.push(product);
 			}
 		}
+	}
+	
+	goToProduct(code) {
+		this.nav.push(ProductPage, {'filter': {'product': code}});
 	}
 	
 	addToCart(formData) {

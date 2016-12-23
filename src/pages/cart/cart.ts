@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, LoadingController } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
-import { TopLinks } from '../../components/top-links/top-links';
 
 @Component({
 	selector: 'cart-page',

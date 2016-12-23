@@ -16,7 +16,7 @@ export class CategoryPage {
 		public bk: Backend,
 		public loadingCtrl: LoadingController
 	) {
-		this.filter = navParams.get('filter');console.log(this.filter);
-		this.category = this.bk.getCategory(this.filter.category);	console.log(this.category);	
+		this.filter = navParams.get('filter');
+		this.category = this.bk.getCategory(this.filter.category);
 	}
 }

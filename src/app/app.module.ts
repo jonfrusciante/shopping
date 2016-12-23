@@ -9,6 +9,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CategoryPage } from '../pages/category/category';
+import { ProductPage } from '../pages/product/product';
 import { BrandPage } from '../pages/brand/brand';
 import { SearchPage } from '../pages/search/search';
 import { CartPage } from '../pages/cart/cart';
@@ -39,6 +40,7 @@ const myFirebaseAuthConfig = {
 		HomePage,
 		LoginPage,
 		CategoryPage,
+		ProductPage,
 		BrandPage,
 		SearchPage,
 		CartPage,
@@ -57,6 +59,7 @@ const myFirebaseAuthConfig = {
 		WelcomePage,
 		HomePage,
 		CategoryPage,
+		ProductPage,
 		BrandPage,
 		LoginPage,
 		SearchPage,

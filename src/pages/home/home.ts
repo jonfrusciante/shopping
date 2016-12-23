@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuController, LoadingController, Nav } from 'ionic-angular';
 import { Backend } from '../../providers/backend';
+import { ProductPage } from '../product/product';
 import { BrandPage } from '../brand/brand';
-import { TopLinks } from '../../components/top-links/top-links';
-import { Search } from '../../components/search/search';
 
 @Component({
 	selector: 'home-page',
@@ -34,6 +33,10 @@ export class HomePage {
 		this.bk.addToCart(formData).subscribe(cartItem => {
 			loading.dismiss();
 		});
+	}
+	
+	goToProduct(code) {
+		this.nav.push(ProductPage, {'filter': {'product': code}});
 	}
 	
 	ionViewWillEnter(){

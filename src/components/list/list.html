@@ -1,7 +1,7 @@
 <ion-card *ngIf="filteredProducts && filteredProducts.length">
 	<ion-list>
 		<ion-list-header>Products</ion-list-header>
-		<ion-item *ngFor="let product of filteredProducts">
+		<ion-item *ngFor="let product of filteredProducts" (click)="goToProduct(item.sku)">
 			<ion-avatar item-left [style.background-color]="product.image">
 				<img src="img/avatar-finn.png">
 			</ion-avatar>

@@ -18,7 +18,9 @@ export class TopLinks {
 		public loadingCtrl: LoadingController
 	) {
 		this.cart = this.bk.getCart();
-		this.cart.subscribe(cartData => {this.cartData = cartData});
+		if(this.cart) {
+			this.cart.subscribe(cartData => {this.cartData = cartData});
+		}
 	}
 	
 	getCartItemsCount() {
